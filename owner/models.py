@@ -15,3 +15,7 @@ class Video(models.Model):
     upload_date = models.DateField(auto_now_add=True)
     num_views = models.IntegerField()
 
+class Tag(models.Model):
+    category = models.CharField(max_length=MAX_TITLE_LENGTH)
+    vids_by_category = models.ManyToManyField(Video)
+
