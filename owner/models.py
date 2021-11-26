@@ -1,5 +1,6 @@
 from django.db import models
 from rater.models import User
+from embed_video.fields import EmbedVideoField
 
 MAX_NAME_LENGTH = 200
 MAX_TITLE_LENGTH = 200
@@ -11,6 +12,7 @@ class Business(models.Model):
 class Video(models.Model):
 
     file = models.FileField(upload_to='videos')
+    embedded = EmbedVideoField(blank=True)
     title = models.CharField(max_length=MAX_TITLE_LENGTH)
     uploader = models.ForeignKey(Business, on_delete=models.CASCADE)
     upload_date = models.DateField(auto_now_add=True)
