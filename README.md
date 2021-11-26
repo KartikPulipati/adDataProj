@@ -1,5 +1,5 @@
 # adData 
-##A project that gives useful data to small businesses!
+## A project that gives useful data to small businesses!
 ### How to use this website!
 ###### *This is done with Mac commands*
 
