@@ -1,5 +1,5 @@
 # adData 
-##A project that gives useful data to small businesses!
+## A project that gives useful data to small businesses!
 ### How to use this website!
 ###### *This is done with Mac commands*
 
@@ -9,27 +9,26 @@
 ```
 git clone https://github.com/<Username>/<Name of Repo>.git>
 ```
-6. Create a venv and activate it
+4. Create a venv and activate it
 ```
 pip3 install virtualenv
 virtualenv venv
 source venv/bin/activate
 ```
-7. Install all project dependencies
+5. Install all project dependencies
 ```
 pip3 install -r requirements.txt
 ```
-8. Be sure to add your own Secret Key and Email credentials in Settings.py
-9. Create the database
-```
-python3 manage.py migrate
-```
-10. Create a superuser and fill out the prompts, the password will be blank(it is for security)
-```
-python3 manage.py createsuperuser
-```
-11. Create a file named .env in adData file and add the Secret Key to ths file(ignore < and >)
+6. Create a file named .env in adData file and add the Secret Key to ths file(ignore < and >)
 ```
 SECRET_KEY=<some key>
 ```
- 
+7. Create the database
+```
+python3 manage.py migrate
+```
+8. Create a superuser and fill out the prompts, the password will be blank(it is for security)
+```
+python3 manage.py createsuperuser
+```
+
