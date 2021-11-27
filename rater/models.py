@@ -1,15 +1,26 @@
+from django.contrib.auth.models import User
 from django.db import models
-from owner.models import Video
-
-MAX_NAME_LENGTH = 200
-
-# Create your models here.
-class User(models.Model):
-    name = models.CharField(max_length=MAX_NAME_LENGTH)
-    liked_videos = models.ManyToManyField(Video)
-    disliked_videos = models.ManyToManyField(Video)
-    unrated_videos = models.ManyToManyField(Video)
+from datetime import date
 
 
+class profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    birthday = models.DateField(blank=False)
+
+    def cal_age(self):
+        today = date.today()
+        return today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
+
+    genders = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    ]
+    gender = models.CharField(max_length=5, choices=genders, blank=False)
+    is_email_verified = models.BooleanField(default=False)
+    credits = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
 
 
