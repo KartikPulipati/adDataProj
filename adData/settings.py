@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rater',
     'owner',
     'display',
-    'embed_video',
+    #'embed_video',
 ]
 
 MIDDLEWARE = [
