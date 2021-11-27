@@ -17,9 +17,10 @@ class Video(models.Model):
     uploader = models.ForeignKey(Business, on_delete=models.CASCADE)
     upload_date = models.DateField(auto_now_add=True)
     num_views = models.IntegerField()
+    num_questions = models.IntegerField()
+    reward_per_question = models.FloatField()
 
     def get_title(self):
-        print(self.title)
         return self.title
 
 class Tag(models.Model):
