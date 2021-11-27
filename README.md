@@ -2,9 +2,9 @@
 ## A project that gives useful data to small businesses!
 ### How to use this website!
 
-**1. Make sure to have python installed in your computer**
-**2. Make folder for this project and *cd* into it**
-**3. Clone this repository into that folder(I personally use _Github Desktop_ because it is so much easier!)**
+1. Make sure to have python installed in your computer
+2. Make folder for this project and *cd* into it
+3. Clone this repository into that folder(I personally use _Github Desktop_ because it is so much easier!)
 ```
 git clone https://github.com/<Username>/<Name of Repo>.git>
 ```
