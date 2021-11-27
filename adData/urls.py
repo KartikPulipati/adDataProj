@@ -20,5 +20,5 @@ from display import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('rater.urls')),
-    path(' ', views.home, name="home"),
+    path('', views.home, name="home"),
 ]
