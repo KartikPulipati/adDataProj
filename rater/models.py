@@ -16,7 +16,7 @@ class profile(models.Model):
         ('Female', 'Female'),
         ('Other', 'Other'),
     ]
-    gender = models.CharField(max_length=5, choices=genders, blank=False)
+    gender = models.CharField(max_length=6, choices=genders, blank=False)
     is_email_verified = models.BooleanField(default=False)
     credits = models.IntegerField(default=0)
 
