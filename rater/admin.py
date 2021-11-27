@@ -1,4 +1,5 @@
 from django.contrib import admin
-from . import models
+from .models import rater
 
-# Register your models here.
+admin.site.register(rater)
+
