@@ -11,7 +11,7 @@ class Advertisement(models.Model):
     reward_per_question = models.FloatField()
     viewers = models.ManyToManyField(rater)
     num_views = models.IntegerField()
-    #is_done = models.BooleanField()
+    is_done = models.BooleanField()
 
 
 
