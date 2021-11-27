@@ -8,9 +8,10 @@ class Advertisement(models.Model):
     media_file = models.FileField(upload_to='media/')
     uploader = models.OneToOneField(Business)
     upload_date = models.DateField(auto_add_now=True)
-    reward_per_question = models.FloatField()
     viewers = models.ManyToManyField(rater)
     num_views = models.IntegerField()
+    reward_per_question = models.FloatField()
+    max_num_responses = models.IntegerField()
     is_done = models.BooleanField()
 
 
