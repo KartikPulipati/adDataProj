@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from display import views
+from django.conf.urls.static import static
+from django.conf import  settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rater/', include('rater.urls')),
     path('', views.home, name='home'),
+    path('owner/', include('owner.urls')),
 ]
+
+urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

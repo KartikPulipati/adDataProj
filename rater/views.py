@@ -22,9 +22,10 @@ def signUp(request):
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             birthday = rform.cleaned_data.get('birthday')
+            gender = rform.cleaned_data.get('gender')
             user = User.objects.create_user(username=email, password=raw_password, email=email, first_name=first_name, last_name=last_name)
             user.save()
-            p = rater(user=user, birthday=birthday, is_email_verified=False, credits=0)
+            p = rater(user=user, birthday=birthday, gender=gender, is_email_verified=False, credits=0)
             p.save()
             login(request, user)
             return redirect('emailVer')
@@ -33,7 +34,7 @@ def signUp(request):
         rform = RaterForm()
     return render(request, 'rater/signup.html', {'form': form, 'rform': rform})
 
-@login_required(redirect_field_name='loginRater')
+@login_required
 def emailVer(request):
     subject="Verification"
     message = f"{code}"

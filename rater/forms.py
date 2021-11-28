@@ -33,7 +33,7 @@ class RaterForm(forms.ModelForm):
         fields =['birthday', 'gender']
 
 class RaterLoginForm(AuthenticationForm):
-    username = forms.EmailField(label='Email', widget=forms.TextInput(
+    username = forms.EmailField(label='Email', widget=forms.EmailInput(
         attrs={'class': '', 'placeholder': 'Enter Email', 'id': 'username'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={

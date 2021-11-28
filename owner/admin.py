@@ -1,5 +1,8 @@
 from django.contrib import admin
-from . import models
+from .models import business, advertisement
 
-# Register your models here.
+admin.site.register(business)
+admin.site.register(advertisement)
+
+
 
