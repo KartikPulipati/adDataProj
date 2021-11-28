@@ -45,3 +45,6 @@ class BusinessForm(forms.ModelForm):
                 'class': ''
             })}
 
+class adCreate(forms.ModelForm):
+    pass
+
