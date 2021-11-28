@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import business
+from .models import business, advertisement, answer
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -45,6 +45,21 @@ class BusinessForm(forms.ModelForm):
                 'class': ''
             })}
 
-class adCreate(forms.ModelForm):
-    pass
+class adCreateForm(forms.ModelForm):
+    class Meta:
+        model = advertisement
+        fields = ['title', 'media_file', 'reward']
+        widgets = {
+            "title": forms.TextInput(attrs={
+                'class': ''
+            })}
+
+class responseForm(forms.ModelForm):
+    class Meta:
+        model = answer
+        fields = ['opinion', 'rating']
+        widgets = {
+            "Opinion": forms.Textarea(attrs={
+                'class': ''
+            })}
 

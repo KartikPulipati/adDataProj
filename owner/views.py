@@ -3,7 +3,7 @@ import string
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login
-from .forms import BSignForm, BusinessForm
+from .forms import BSignForm, BusinessForm, adCreateForm, responseForm
 from .models import business
 from django.core.mail import EmailMessage
 from adData import settings
@@ -58,7 +58,14 @@ def emailVer(request):
         else:
             return render(request, 'owner/codeCheckB.html', {'error': 'Code did not work, sent another code please check your email again!'})
 
+def adCreate(request):
+    if request.method == 'POST':
+        form = adCreateForm()
+        if form.is_valid():
+            instance = form.save(commit=False)
 
-
+    else:
+        form = adCreateForm()
+    return render(request, 'owner/signupB.html', {'form': form})
 
 
