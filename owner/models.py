@@ -10,17 +10,16 @@ class business(models.Model):
     is_email_verified = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.owner.company_name
+        return self.company_name
 
 MAX_TITLE_LENGTH = 200
 
 
 class advertisement(models.Model):
     title = models.CharField(max_length=MAX_TITLE_LENGTH)
-    media_file = models.FileField(upload_to='adverMedia/%Y/%m/%d/')
+    media_file = models.FileField(upload_to='owner/')
     uploader = models.ForeignKey(business, on_delete=models.CASCADE)
     reward = models.PositiveIntegerField(blank=False)
-    viewers = models.ManyToManyField(rater, blank=False)
     num_views = models.IntegerField(default=0)
     is_done = models.BooleanField(default=False)
 

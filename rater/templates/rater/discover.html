@@ -1,0 +1,11 @@
+{% extends "display/base.html" %}
+
+{% block content %}
+{% for i in ad %}
+    <a href="{% url 'viewAd' i.id %}">
+    <b>{{ i.title }}</b><br>
+    {{ i.reward }}
+    <hr>
+    </a>
+    {% endfor %}
+{% endblock content %}

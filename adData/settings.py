@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'rater',
     'owner',
     'display',
-    #'embed_video',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -140,7 +140,7 @@ EMAIL_HOST_USER = env('mail_username')
 EMAIL_HOST_PASSWORD = env('mail_pass')
 EMAIL_PORT = 587
 
-LOGIN_URL='loginRater'
+LOGIN_URL = 'loginRater'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')

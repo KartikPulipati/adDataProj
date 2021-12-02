@@ -2,7 +2,7 @@
 
 {% block content %}
   <h2>Code</h2>
-    {% if user.is_authenticated and user.profile.is_email_verified %}
+    {% if user.is_authenticated and user.rater.is_email_verified %}
       You are already verified!
         <a href="{% url 'home' %}">Go back!</a>
     {% else %}

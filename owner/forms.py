@@ -49,6 +49,9 @@ class adCreateForm(forms.ModelForm):
     class Meta:
         model = advertisement
         fields = ['title', 'media_file', 'reward']
+        labels={
+            'reward': 'Reward(in cents)'
+        }
         widgets = {
             "title": forms.TextInput(attrs={
                 'class': ''
@@ -59,7 +62,7 @@ class responseForm(forms.ModelForm):
         model = answer
         fields = ['opinion', 'rating']
         widgets = {
-            "Opinion": forms.Textarea(attrs={
+            "opinion": forms.Textarea(attrs={
                 'class': ''
             })}
 
