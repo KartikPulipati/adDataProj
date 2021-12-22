@@ -13,9 +13,12 @@ def viewAd(request, advertisement_pk):
     notThere = True
     ad = get_object_or_404(advertisement, pk=advertisement_pk)
     ans = answer.objects.filter(ad=ad)
-    for i in ans:
-        if i.user == request.user.rater:
-            notThere = False
+    try:
+        for i in ans:
+            if i.user == request.user.rater:
+                notThere = False
+    except:
+        pass
     if notThere:
         if request.method == 'POST':
             form = responseForm(request.POST)
