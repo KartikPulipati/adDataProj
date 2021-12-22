@@ -137,7 +137,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'VerficationEmailBlueCoder@gmail.com'
-EMAIL_HOST_PASSWORD = 'Verify101'
+EMAIL_HOST_PASSWORD = 'jogpdasmkdffgymr'
 EMAIL_PORT = 587
 
 LOGIN_URL = 'loginRater'
