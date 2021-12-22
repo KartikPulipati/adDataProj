@@ -24,7 +24,7 @@ env = environ.Env()
 environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-ernl^jo!t0v$nof5%2h+b=vz1v&)&ngs@4pjq7r(%6cl)d%dfp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -136,8 +136,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 
-EMAIL_HOST_USER = env('mail_username')
-EMAIL_HOST_PASSWORD = env('mail_pass')
+EMAIL_HOST_USER = 'VerficationEmailBlueCoder@gmail.com'
+EMAIL_HOST_PASSWORD = 'Verify101'
 EMAIL_PORT = 587
 
 LOGIN_URL = 'loginRater'
