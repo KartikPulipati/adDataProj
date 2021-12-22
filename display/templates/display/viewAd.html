@@ -1,0 +1,52 @@
+{% extends "display/base.html" %}
+
+{% block content %}
+    {% if user.rater.is_email_verified or user.business.is_email_verified %}
+    <br>
+    <div class="container text-center">
+    <h1>Title: {{ ad.title }}</h1>
+<video width='1000' controls>
+<source src="{{ ad.media_file.url }}" type='video/mp4' style="align-content: center" onerror="this.style.display='none'"/>
+Your browser does not support the video, please use another browser.
+</video>
+    <img src="{{ ad.media_file.url }}" onerror="this.style.display='none'" alt=""/>
+    <p>Reward: {{ ad.reward }}</p>
+    <p>Responses: {{ ad.num_views }}</p>
+    </div>
+{% if user.rater %}
+   <div class="container" style="padding-top: 20px; padding-left: 300px; padding-right: 300px;">
+
+    <form method='POST'>
+          <div class="form-group card" style="padding: 30px;background-color: #EAEFF2">
+
+    {% csrf_token %}
+          {{ form.as_p }}
+        {{ rform.as_p }}
+                      <button class="btn btn-primary btn-lg input-block-level" type="submit">Respond</button>
+
+              </div>
+</form>
+
+    </div>
+    {% endif %}
+    <br>
+    <hr>
+        <div class="container">
+    {% if ad.uploader == user.business %}
+    {% for i in ans %}
+        {{ i.user.user.first_name }}<br>
+        {{ i.opinion }}<br>
+        {{ i.rating }}<br>
+        <hr>
+    {% endfor %}
+    {% endif %}
+        </div>
+        {% else %}
+        <div class="container">
+        <h1>
+            Please verify your email!
+        </h1>
+        </div>
+{% endif %}
+{% endblock content %}
+

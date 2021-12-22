@@ -9,6 +9,9 @@ class business(models.Model):
     company_website = models.URLField()
     is_email_verified = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name_plural = "Businesses"
+
     def __str__(self):
         return self.company_name
 
@@ -23,14 +26,17 @@ class advertisement(models.Model):
     num_views = models.IntegerField(default=0)
     is_done = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.title
+
 class answer(models.Model):
-    user = models.ForeignKey(rater, related_name='answered', on_delete=models.PROTECT)
+    user = models.ForeignKey(rater, related_name='answered', on_delete=models.CASCADE)
     ad = models.ForeignKey(advertisement, related_name='answers', on_delete=models.CASCADE)
     opinion = models.TextField(max_length=6000)
     rating = models.IntegerField(blank=False, validators=[MaxValueValidator(5), MinValueValidator(1)])
 
     def __str__(self):
-        return f'{self.advertisement.title} - {self.rater.user.first_name}'
+        return f'{self.ad.title} - {self.user.user.first_name}'
 
 
 

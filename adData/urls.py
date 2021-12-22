@@ -24,6 +24,7 @@ urlpatterns = [
     path('rater/', include('rater.urls')),
     path('', views.home, name='home'),
     path('owner/', include('owner.urls')),
+    path('view/<int:advertisement_pk>', views.viewAd, name='viewAd'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,3 +1,39 @@
-{% extends "display/base.html" %} {% block content %}
+{% extends "display/base.html" %}
+{% load static %}
+{% block content %}
+    <br>
+<div class="container" >
+    <div class="row">
+    <div class="col" >
+        <img src="{% static 'display/logo.png' %}" alt="Logo">
+    </div>
+    <div class="col" style="padding: 100px; font-family: 'Shadows Into Light', cursive;">
+        <h1>Make your advertisements smart, by gathering useful data for yourselves or simply help out struggling businesses!</h1>
+    </div>
+    </div>
+</div>
+    <div style="background-color: #0096FF; margin-top: 100px;">
+<div class="container" style="padding-top: 30px; padding-bottom: 100px; color: white; font-family: 'Open Sans Condensed', sans-serif; font-size: xx-large">
+    <div class="row text-center" >
+        <div class="col">
+            SignUp to help your business <br>
+            or become a rater now!
+        </div>
+        <div class="col">
+            Signup as a Business!<br>
+            <a  href="{% url 'bsignup' %}" class="btn btn-warning btn-lg"> SignUp!</a>
+        </div>
+        <div class="col">
+            Signup as a Rater!<br>
+            <a  href="{% url 'signup' %}" class="btn btn-warning btn-lg"> SignUp!</a>
+        </div>
+
+        <h1 style="padding-top: 50px">Helping struggling businesses since Mr. Brucker assigned me this project</h1>
+
+    </div>
+</div>
+</div>
+
+
 
 {% endblock content %}

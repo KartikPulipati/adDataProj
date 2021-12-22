@@ -1,11 +1,21 @@
 {% extends "display/base.html" %}
 
 {% block content %}
-    <form method='POST' >
+    <div class="container" style="padding-top: 20px; padding-left: 300px; padding-right: 300px;">
+
+    <form method='POST'>
+          <div class="form-group card" style="padding: 30px;background-color: #EAEFF2">
+                              <h1 class="text-center display-4" style="padding-bottom: 20px;">Sign up your Business!</h1>
+
     {% csrf_token %}
-    {{ form.as_p }}
+          {{ form.as_p }}
         {{ rform.as_p }}
-        <button class="" type="submit">Create</button>
+                      <button class="btn btn-primary btn-lg input-block-level" type="submit">Sign up!</button>
+
+              </div>
 </form>
+
+    </div>
+
 
 {% endblock content %}

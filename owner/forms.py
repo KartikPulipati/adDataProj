@@ -3,20 +3,37 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import business, advertisement, answer
 
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
+
 class BSignForm(UserCreationForm):
-    email = forms.EmailField(label='Company Email', max_length=300, help_text='Required')
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'type': 'password', 'align': 'center', 'placeholder': 'Password'}),
+    )
+    password2 = forms.CharField(
+        label="Confirm password",
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'type': 'password', 'placeholder': 'Re-enter password'}),
+    )
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["email"]
         widgets = {
-            "email": forms.EmailInput(attrs={
-                'class': ''
-            })}
-        fields = ('email', 'password1', 'password2')
+            "email": forms.EmailInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            "email": "Company Email",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(BSignForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].help_text = None
+        self.fields['password2'].help_text = None
 
     def clean_email(self):
         # Get the email
@@ -32,30 +49,34 @@ class BSignForm(UserCreationForm):
         # A user was found with this as a username, raise an error.
         raise forms.ValidationError('This email is already in use.')
 
+
 class BusinessForm(forms.ModelForm):
     class Meta:
-        labels={
+        labels = {
             'company_name': 'Company Name',
             'company_website': 'Company Website'
         }
         model = business
-        fields =['company_name', 'company_website']
+        fields = ['company_name', 'company_website']
         widgets = {
-            "company_website": forms.URLInput(attrs={
-                'class': ''
-            })}
+            "company_website": forms.URLInput(attrs={'class': 'form-control'}),
+            "company_name": forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
 
 class adCreateForm(forms.ModelForm):
     class Meta:
         model = advertisement
         fields = ['title', 'media_file', 'reward']
-        labels={
-            'reward': 'Reward(in cents)'
+        labels = {
+            'reward': 'Reward'
         }
         widgets = {
-            "title": forms.TextInput(attrs={
-                'class': ''
-            })}
+            "title": forms.TextInput(attrs={'class': 'form-control'}),
+            'media_file': forms.FileInput(attrs={'class': 'form-control'}),
+            'reward': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
 
 class responseForm(forms.ModelForm):
     class Meta:
@@ -63,6 +84,9 @@ class responseForm(forms.ModelForm):
         fields = ['opinion', 'rating']
         widgets = {
             "opinion": forms.Textarea(attrs={
-                'class': ''
-            })}
-
+                'class': 'form-control'
+            }),
+            "rating": forms.NumberInput(attrs={
+                'class': 'form-control'
+            }),
+        }

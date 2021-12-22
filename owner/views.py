@@ -5,20 +5,20 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login
 from .forms import BSignForm, BusinessForm, adCreateForm
 from .models import business
+from rater.models import rater
 from django.core.mail import EmailMessage
 from adData import settings
 from django.contrib.auth.decorators import login_required
 from .models import advertisement
+from django.contrib.auth.decorators import permission_required
+from django.http import Http404
+
 
 code = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(6))
 
-
 def signupB(request):
     if request.user.is_authenticated:
-        if request.user.rater:
-            return redirect('discover')
-        else:
-            return redirect('adCreate')
+        return redirect('home')
 
     if request.method == 'POST':
         form = BSignForm(request.POST)
@@ -42,11 +42,6 @@ def signupB(request):
 
 @login_required
 def emailVerB(request):
-    if request.user.business.is_email_verified or request.user.rater:
-        if request.user.rater:
-            return redirect('discover')
-        else:
-            return redirect('adCreate')
     subject = "Verification"
     message = f"{code}"
     email_from = settings.EMAIL_HOST_USER
@@ -72,10 +67,10 @@ def emailVerB(request):
             return render(request, 'owner/codeCheckB.html',
                           {'error': 'Code did not work, sent another code please check your email again!'})
 
-
 @login_required
 def adCreate(request):
-    if request.user.business:
+    try:
+        request.user.business
         if request.method == 'POST':
             form = adCreateForm(request.POST, request.FILES)
             if form.is_valid():
@@ -89,4 +84,15 @@ def adCreate(request):
         else:
             form = adCreateForm()
         return render(request, 'owner/adCreate.html', {'form': form})
-    return redirect('home')
+    except:
+        raise Http404
+
+@login_required
+def dashboard(request):
+    try:
+        items = advertisement.objects.filter(uploader=request.user.business)
+        return render(request, 'owner/dashboard.html', {'items': items})
+    except:
+        raise Http404
+
+

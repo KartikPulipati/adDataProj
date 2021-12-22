@@ -1,18 +1,32 @@
 {% extends 'display/base.html' %}
 
 {% block content %}
-  <h2>Code</h2>
+        {% if not user.rater.is_email_verified and user.rater %}
+
+    <br>
     {% if user.is_authenticated and user.rater.is_email_verified %}
-      You are already verified!
-        <a href="{% url 'home' %}">Go back!</a>
+        <h1 class = "container"> You are already verified!</h1>
+        <a class="btn btn-danger" href="{% url 'home' %}">Go back!</a>
     {% else %}
-        A code has been emailed. If you reload or open this page again a new code will be provided!
+
         <form method="post">
+        <div class="form-group container bg-light" style="padding:50px">
+            <h1 class>Authenticating You!</h1>
+            <p class="small">A code has been emailed. If you reload or open this page again a new code will be provided!</p>
+
     {% csrf_token %}
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
       {{ error }}
-        Code:
-            <input type="text" name="code" id="code">
-    <button type="submit">Verify</button>
+</div>
+                {% endif %}
+        <div style="padding-right: 1000px">
+        Code: <input class="form-control" type="text" name="code" id="code">
+            <br>
+            </div>
+                      <button class="btn btn-primary btn-lg text-center" type="submit">Sign up!</button>
+            </div>
   </form>
+    {% endif %}
     {% endif %}
 {% endblock %}

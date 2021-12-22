@@ -2,11 +2,11 @@
 
 {% block content %}
     <br>
-    {% if user.rater.is_email_verified %}
+    {% if user.business.is_email_verified %}
     <div class="container">
     <h1>Discover</h1>
         <ul class="list-group" >
-{% for i in ad %}
+{% for i in items %}
           <a href="{% url 'viewAd' i.id %}" style="text-decoration: none">
   <li class="list-group-item">
     <b>{{ i.title }}</b><br>
@@ -26,5 +26,6 @@
         </h1>
         </div>
 {% endif %}
+
 
 {% endblock content %}

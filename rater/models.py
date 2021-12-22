@@ -20,6 +20,9 @@ class rater(models.Model):
     is_email_verified = models.BooleanField(default=False)
     credits = models.IntegerField(default=0)
 
+    class Meta:
+        pass
+
     def __str__(self):
         return self.user.username
 
