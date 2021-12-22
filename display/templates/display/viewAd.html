@@ -13,7 +13,7 @@ Your browser does not support the video, please use another browser.
     <p>Reward: {{ ad.reward }}</p>
     <p>Responses: {{ ad.num_views }}</p>
     </div>
-{% if user.rater %}
+{% if user.rater and form %}
    <div class="container" style="padding-top: 20px; padding-left: 300px; padding-right: 300px;">
 
     <form method='POST'>
