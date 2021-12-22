@@ -34,9 +34,9 @@ Your browser does not support the video, please use another browser.
         <div class="container">
     {% if ad.uploader == user.business %}
     {% for i in ans %}
-        {{ i.user.user.first_name }}<br>
-        {{ i.opinion }}<br>
-        {{ i.rating }}<br>
+        <strong>Name:</strong>{{ i.user.user.first_name }}<br>
+         <strong>Opinion:</strong>{{ i.opinion }}<br>
+         <strong>Rating:</strong>{{ i.rating }}<br>
         <hr>
     {% endfor %}
     {% endif %}
