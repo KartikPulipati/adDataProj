@@ -4,7 +4,8 @@
     <br>
     {% if user.business.is_email_verified %}
     <div class="container">
-    <h1>Discover</h1>
+    <h1>Dashboard</h1>
+    
         <ul class="list-group" >
 {% for i in items %}
           <a href="{% url 'viewAd' i.id %}" style="text-decoration: none">
