@@ -62,7 +62,7 @@ def emailVerB(request):
             pro = business.objects.get(user=request.user)
             pro.is_email_verified = True
             pro.save()
-            return redirect('home')
+            return redirect('dashboard')
         else:
             return render(request, 'owner/codeCheckB.html',
                           {'error': 'Code did not work, sent another code please check your email again!'})

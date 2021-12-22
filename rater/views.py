@@ -61,7 +61,7 @@ def emailVer(request):
             pro = rater.objects.get(user=request.user)
             pro.is_email_verified = True
             pro.save()
-            return redirect('home')
+            return redirect('discover')
         else:
             return render(request, 'rater/codeCheck.html', {'error': 'Code did not work, sent another code please '
                                                                      'check your email again!'})
