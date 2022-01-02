@@ -10,7 +10,7 @@ git clone https://github.com/<Username>/<Name of Repo>.git>
 ```
 **4. Create a venv and activate it**
 
-LINUX:
+MAC/LINUX:
 ```
 pip3 install virtualenv
 virtualenv venv
@@ -39,7 +39,7 @@ SECRET_KEY=<some key>
 ```
 **7. Create the database**
 
-LINUX:
+MAC/LINUX:
 ```
 python3 manage.py migrate
 ```
@@ -49,7 +49,7 @@ py manage.py migrate
 ```
 **8. Create a superuser and fill out the prompts, the password will be blank(it is for security)**
 
-LINUX:
+MAC/LINUX:
 ```
 python3 manage.py createsuperuser
 ```
