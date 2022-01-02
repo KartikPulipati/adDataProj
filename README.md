@@ -25,7 +25,7 @@ cd myenv/Scripts
 ```
 **5. Install all project dependencies**
 
-LINUX:
+MAC/LINUX:
 ```
 pip3 install -r requirements.txt
 ```
@@ -33,7 +33,7 @@ WINDOWS:
 ```
 pip install -r requirements.txt
 ```
-**6. Create a file named .env in adData file and add the Secret Key to ths file(ignore < and >)**
+**6. (Ignore this) Create a file named .env in adData file and add the Secret Key to ths file(ignore < and >)**
 ```
 SECRET_KEY=<some key>
 ```

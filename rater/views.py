@@ -9,6 +9,7 @@ from owner.models import advertisement
 from django.core.mail import EmailMessage
 from adData import settings
 from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
 
 code = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(6))
 
@@ -41,17 +42,21 @@ def signUp(request):
 
 @login_required
 def emailVer(request):
-    subject = "Verification"
-    message = f"{code}"
+    subject = "Verification for adData"
+    context = {
+        'code': code,
+        'name': request.user.first_name,
+    }
+    message = render_to_string(template_name='rater/email.html', context=context)
     email_from = settings.EMAIL_HOST_USER
     email_to = [request.user.email, ]
-    print(request.user.email)
     msg = EmailMessage(
-        subject,
-        message,
+        subject=subject,
+        body=message,
         from_email=email_from,
         to=email_to,
     )
+    msg.content_subtype = 'html'
     msg.send(fail_silently=False)
 
     if request.method == 'GET':
