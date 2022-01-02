@@ -3,8 +3,12 @@
 {% block content %}
     <br>
     {% if user.rater.is_email_verified %}
+
     <div class="container">
     <h1>Discover</h1>
+     {% if not ad %}
+            <h2>There are no ads yet, please wait!</h2>
+         {% endif %}
         <ul class="list-group" >
 {% for i in ad %}
           <a href="{% url 'viewAd' i.id %}" style="text-decoration: none">
