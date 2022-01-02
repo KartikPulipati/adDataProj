@@ -4,7 +4,7 @@
     {% if user.rater.is_email_verified or user.business.is_email_verified %}
     <br>
     <div class="container text-center">
-    <h1>Title: {{ ad.title }}</h1>
+        <h1>Title: {{ ad.title }}{% if ad.is_done %}<span style="color: #D0342C">(Over)</span>{% endif %}</h1>
 <video width='1000' controls>
 <source src="{{ ad.media_file.url }}" type='video/mp4' style="align-content: center" onerror="this.style.display='none'"/>
 Your browser does not support the video, please use another browser.
@@ -13,7 +13,7 @@ Your browser does not support the video, please use another browser.
     <p>Reward: {{ ad.reward }}</p>
     <p>Responses: {{ ad.num_views }}</p>
     </div>
-{% if user.rater and form %}
+{% if user.rater and form and not ad.is_done %}
    <div class="container" style="padding-top: 20px; padding-left: 300px; padding-right: 300px;">
 
     <form method='POST'>

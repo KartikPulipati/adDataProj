@@ -1,24 +1,35 @@
 {% extends "display/base.html" %}
-
+{% load static %}
 {% block content %}
     <br>
     {% if user.business.is_email_verified %}
     <div class="container">
     <h1>Dashboard</h1>
+    {% if not items %}
+        <h3>You didn't create any yet, make one now!</h3>
+        <h4><a href="{% url 'adCreate' %}" class="btn btn-primary">Create!</a></h4>
+        {% endif %}
 
         <ul class="list-group" >
 {% for i in items %}
-          <a href="{% url 'viewAd' i.id %}" style="text-decoration: none">
   <li class="list-group-item">
-    <b>{{ i.title }}</b><br>
+            <a href="{% url 'viewAd' i.id %}" style="text-decoration: none">
+<div style="color: black">
+    <b style="text-decoration: none;">{{ i.title }}</b><br>
     Reward: {{ i.reward }},
       Responses: {{ i.num_views }}
     <hr>
+</div>
+                          </a>
+      <form action="{% url 'done' i.id %}" method="POST">
+          {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Done </button>
+          </form>
   </li>
-          </a>
+
 
     {% endfor %}
-            <ul class="list-group">
+        </ul>
     </div>
 {% else %}
         <div class="container">
@@ -27,6 +38,7 @@
         </h1>
         </div>
 {% endif %}
+
 
 
 {% endblock content %}

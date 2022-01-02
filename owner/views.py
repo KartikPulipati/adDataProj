@@ -1,15 +1,14 @@
 import random
 import string
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from .forms import BSignForm, BusinessForm, adCreateForm
-from .models import business
+from .models import business, advertisement
 from rater.models import rater
 from django.core.mail import EmailMessage
 from adData import settings
 from django.contrib.auth.decorators import login_required
-from .models import advertisement
 from django.contrib.auth.decorators import permission_required
 from django.http import Http404
 
@@ -68,6 +67,18 @@ def emailVerB(request):
                           {'error': 'Code did not work, sent another code please check your email again!'})
 
 @login_required
+def done(request, advertisement_pk):
+    ad = get_object_or_404(advertisement, pk=advertisement_pk)
+    try:
+        request.user.business
+        if request.method == 'POST':
+            ad.is_done = True
+            ad.save()
+            return redirect('dashboard')
+    except:
+        raise Http404
+
+@login_required
 def adCreate(request):
     try:
         request.user.business
@@ -80,7 +91,7 @@ def adCreate(request):
                 user = request.user.business
                 ad = advertisement.objects.create(title=name, reward=reward, media_file=media, uploader=user)
                 ad.save()
-                return redirect('home')
+                return redirect('dashboard')
         else:
             form = adCreateForm()
         return render(request, 'owner/adCreate.html', {'form': form})
@@ -89,10 +100,10 @@ def adCreate(request):
 
 @login_required
 def dashboard(request):
-    try:
-        items = advertisement.objects.filter(uploader=request.user.business)
-        return render(request, 'owner/dashboard.html', {'items': items})
-    except:
-        raise Http404
+    items = advertisement.objects.filter(uploader=request.user.business, is_done=False)
+    return render(request, 'owner/dashboard.html', {'items': items})
+
+
+
 
 

@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from owner.forms import responseForm
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
 from owner.models import advertisement, answer
 from django.contrib.auth.models import User
 
