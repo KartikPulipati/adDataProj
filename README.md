@@ -57,7 +57,7 @@ WINDOWS:
 ```
 py manage.py createsuperuser
 ```
-**9. Now to run the server, you should see the homepage after this!
+9. Now to run the server, you should see the homepage after this!
 
 MAC/Linux:
 ```
