@@ -33,7 +33,7 @@ WINDOWS:
 ```
 pip install -r requirements.txt
 ```
-**6. (Ignore this) Create a file named .env in adData file and add the Secret Key to ths file(ignore < and >)**
+**6. (Ignore this) Create a file named .env in adData file and add the Secret Key to this file(ignore < and >)**
 ```
 SECRET_KEY=<some key>
 ```
@@ -57,4 +57,16 @@ WINDOWS:
 ```
 py manage.py createsuperuser
 ```
+**9 Now to run the server, you should see the homepage after this!
+
+MAC/Linux:
+```
+python3 manage.py runserver
+```
+WINDOWS:
+```
+py manage.py runserver
+```
+
+
 
