@@ -24,7 +24,6 @@ class advertisement(models.Model):
     uploader = models.ForeignKey(business, on_delete=models.CASCADE)
     reward = models.PositiveIntegerField(blank=False)
     num_views = models.IntegerField(default=0)
-    is_done = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

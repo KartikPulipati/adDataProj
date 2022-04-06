@@ -5,11 +5,14 @@
     <br>
     <div class="container text-center">
         <h1>Title: {{ ad.title }}{% if ad.is_done %}<span style="color: #D0342C">(Over)</span>{% endif %}</h1>
-<video width='1000' controls>
+    {% if 'png' in ad.media_file.url or 'jpg' in ad.media_file.url or 'jpeg' in ad.media_file.url %}
+    <img src="{{ ad.media_file.url }}" onerror="this.style.display='none'" alt=""/>
+        {% else %}
+        <video width='1000' controls>
 <source src="{{ ad.media_file.url }}" type='video/mp4' style="align-content: center" onerror="this.style.display='none'"/>
 Your browser does not support the video, please use another browser.
 </video>
-    <img src="{{ ad.media_file.url }}" onerror="this.style.display='none'" alt=""/>
+        {% endif %}
     <p>Reward: {{ ad.reward }}</p>
     <p>Responses: {{ ad.num_views }}</p>
     </div>
